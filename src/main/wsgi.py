@@ -23,7 +23,7 @@ def application(environ, start_response):
         b'<meta charset="utf-8">'
         b"</head>"
         b"<body>"
-        b"<h1>Project Beta</h1>"
+        b"<h1>Project Beta11</h1>"
         b"<hr>"
         b"<p>This is a main project.</p>"
         b"</body>"
