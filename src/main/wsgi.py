@@ -27,15 +27,14 @@ def application(environ, start_response):
         environ2 += text
 
     template = read_template("index.html")
+
     payload = template.format(
         random_number=random_number,
         environ=environ2,
-        xxx=1
-        yyy=1,
-        yyy=2,
+
     )
 
 
     start_response(status, list(headers.items()))
 
-    yield from [payload.encode()]
+    yield payload.encode()
