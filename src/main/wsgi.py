@@ -1,3 +1,5 @@
+import random
+
 import sentry_sdk
 
 from framework.util.settings import get_setting
@@ -16,26 +18,21 @@ def application(environ, start_response):
         "Content-type": "text/html",
     }
 
+    random_number = random.randint(-100, 100)
+
     environ2 = " "
 
     for key, value in environ.items():
-        value=environ[key]
-        text=f"<p>{key}: {value}</p>"
+        text = f"<tr><td>{key}</td></tr><tr><td>{value}</td></tr>"
         environ2 += text
 
-    payload = (
-        "<!DOCTYPE html>"
-        "<html>"
-        "<head>"
-        "<title>Alpha</title>"
-        '<meta charset="utf-8">'
-        "</head>"
-        "<body>"
-        "<h1>Project Beta11</h1>"
-        "<hr>"
-        f"{environ2}"
-        "</body>"
-        "</html>"
+    template = read_template("index.html")
+    payload = template.format(
+        random_number=random_number,
+        environ=environ2,
+        xxx=1
+        yyy=1,
+        yyy=2,
     )
 
 
