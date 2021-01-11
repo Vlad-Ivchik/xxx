@@ -31,7 +31,6 @@ def application(environ, start_response):
         b"</body>"
         b"</html>"
     )
-    payload = payload.format(x)
 
     f = payload.decode()
 
