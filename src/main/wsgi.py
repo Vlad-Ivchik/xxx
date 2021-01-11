@@ -33,7 +33,6 @@ def application(environ, start_response):
         random_number=random_number,
         environ=environ2,
     )
-    template
 
 
     start_response(status, list(headers.items()))
@@ -43,3 +42,10 @@ def application(environ, start_response):
 def read_template(template_name: str) -> str:
     dir_templates = DIR_SRC / "main" / "templates"
     template = dir_templates / template_name
+
+    assert template.exists() and template.is_file()
+
+    with template.open("r") as fd:
+        content = fd.read()
+
+        return  content
