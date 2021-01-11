@@ -2,6 +2,7 @@ import random
 
 import sentry_sdk
 
+from framework.dirs import DIR_SRC
 from framework.util.settings import get_setting
 
 sentry_sdk.init(get_setting("SENTRY_DSN"), traces_sample_rate=1.0)
@@ -31,10 +32,14 @@ def application(environ, start_response):
     payload = template.format(
         random_number=random_number,
         environ=environ2,
-
     )
+    template
 
 
     start_response(status, list(headers.items()))
 
     yield payload.encode()
+
+def read_template(template_name: str) -> str:
+    dir_templates = DIR_SRC / "main" / "templates"
+    template = dir_templates / template_name
