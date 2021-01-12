@@ -7,6 +7,12 @@ from framework.util.settings import get_setting
 
 sentry_sdk.init(get_setting("SENTRY_DSN"), traces_sample_rate=1.0)
 
+def url_processor(path_info):
+    urls = {
+        'index': home,
+        'environ': environment
+    }
+    return urls[path_info]
 
 
 def application(environ, start_response):
@@ -18,22 +24,7 @@ def application(environ, start_response):
     headers = {
         "Content-type": "text/html",
     }
-
-    random_number = random.randint(-100, 100)
-
-    environ2 = " "
-
-    for key, value in environ.items():
-        text = f"<tr><td>{key}</td></tr><tr><td>{value}</td></tr>"
-        environ2 += text
-
-    template = read_template("index.html")
-
-    payload = template.format(
-        random_number=random_number,
-        environ=environ2,
-    )
-
+    payload = url_processor(environ["PATH_INFO"])
 
     start_response(status, list(headers.items()))
 
@@ -49,3 +40,26 @@ def read_template(template_name: str) -> str:
         content = fd.read()
 
         return  content
+
+
+def home():
+    template = read_template("index.html")
+
+    random_number = random.randint(-100, 100)
+    payload = template.format(
+        random_number=random_number,
+    )
+    return payload
+
+
+def environment(environ):
+    environ2 = " "
+    for key, value in environ.items():
+        text = f"<tr><td>{key}</td><td>{value}</td></tr>"
+        environ2 += text
+    template = read_template("index.html")
+
+    payload = template.format(
+        environ=environ2,
+    )
+    return payload
