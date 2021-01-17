@@ -18,6 +18,7 @@ def application(environ, start_response):
         "Content-type": "text/html",
     }
 
+
     random_number = random.randint(-100, 100)
 
     environ2 = ""
@@ -26,12 +27,18 @@ def application(environ, start_response):
         text = f"<tr><td>{key}</td><td>{value}</td></tr>"
         environ2 = environ2 + text
 
+
     template = read_template("index.html")
+
+    if environ["PATH_INFO"] == "/environ":
+        template = read_template("environ.html")
 
     payload = template.format(
         random_number=random_number,
         environ=environ2,
     )
+    if payload == "":
+        payload = read_template("index.html")
 
     start_response(status, list(headers.items()))
 
@@ -48,3 +55,4 @@ def read_template(template_name: str) -> str:
         content = fd.read()
 
     return content
+
