@@ -7,6 +7,7 @@ from framework.util.settings import get_setting
 
 sentry_sdk.init(get_setting("SENTRY_DSN"), traces_sample_rate=1.0)
 
+
 def url_processor(path_info):
     urls = {
         'index': home,
@@ -48,12 +49,13 @@ def home():
     random_number = random.randint(-100, 100)
     payload = template.format(
         random_number=random_number,
+
     )
     return payload
 
 
 def environment(environ):
-    environ2 = " "
+    environ2 = "  "
     for key, value in environ.items():
         text = f"<tr><td>{key}</td><td>{value}</td></tr>"
         environ2 += text
