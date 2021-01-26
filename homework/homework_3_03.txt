@@ -1,0 +1,4 @@
+def names():
+    a,b = input(), input()
+    z = f"!{b} {a}!"
+    print(z)
