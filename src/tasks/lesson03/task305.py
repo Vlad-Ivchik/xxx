@@ -1,4 +1,4 @@
-def ppp():
+def main():
     x = input()
     if 'code' in x:
         print('Yes')
