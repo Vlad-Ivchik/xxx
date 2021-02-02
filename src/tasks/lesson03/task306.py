@@ -1,4 +1,4 @@
-def main():
+def ppp():
     age = int(input())
     if age < 0:
         print('Wrong input')

@@ -1,4 +1,4 @@
-def main():
+def ppp():
     stroka = input()
     if len(stroka) > 5:
         print(len(stroka))
