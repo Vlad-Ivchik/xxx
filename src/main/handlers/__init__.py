@@ -21,14 +21,14 @@ urlpatterns: Dict[str, HandlerT] = {
     "/": index.handler,
     "/e/": error_test.handler,
     "/tasks/1/103/": task103.handler,
-    "/tasks/3/301/": task301.handler,
-    "/tasks/3/302/": task302.handler,
+    # "/tasks/3/301/": task301.handler,
+    # "/tasks/3/302/": task302.handler,
     "/tasks/3/303/": task303.handler,
-    "/tasks/3/304/": task304.handler,
-    "/tasks/3/305/": task305.handler,
-    "/tasks/3/306/": task306.handler,
-    "/tasks/3/307/": task307.handler,
-    "/tasks/3/309/": task309.handler,
+    # "/tasks/3/304/": task304.handler,
+    # "/tasks/3/305/": task305.handler,
+    # "/tasks/3/306/": task306.handler,
+    # "/tasks/3/307/": task307.handler,
+    # "/tasks/3/309/": task309.handler,
 }
 
 
