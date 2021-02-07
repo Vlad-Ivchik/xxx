@@ -12,6 +12,7 @@ def application(environ, start_response):
     if environ["PATH_INFO"] == "/e/":
         division = 1 / 0
 
+
     status = "200 OK"
 
     headers = {
