@@ -3,14 +3,14 @@ from typing import Dict
 from main.custom_types import HandlerT
 from main.custom_types import RequestT
 from tasks.lesson01 import task103
-from tasks.lesson03 import task301
-from tasks.lesson03 import task302
+# from tasks.lesson03 import task301
+# from tasks.lesson03 import task302
 from tasks.lesson03 import task303
-from tasks.lesson03 import task304
-from tasks.lesson03 import task305
-from tasks.lesson03 import task306
-from tasks.lesson03 import task307
-from tasks.lesson03 import task309
+# from tasks.lesson03 import task304
+# from tasks.lesson03 import task305
+# from tasks.lesson03 import task306
+# from tasks.lesson03 import task307
+# from tasks.lesson03 import task309
 
 from . import error_test
 from . import index
