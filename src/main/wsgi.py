@@ -1,29 +1,59 @@
+import random
+
 import sentry_sdk
 
+from framework.dirs import DIR_SRC
 from framework.util.settings import get_setting
-from main.handlers import get_handler
-from main.handlers import handle_500
-from main.util import build_request
 
 sentry_sdk.init(get_setting("SENTRY_DSN"), traces_sample_rate=1.0)
 
 
 def application(environ, start_response):
-    request = build_request(environ)
-    handler = get_handler(request)
+    if environ["PATH_INFO"] == "/e/":
+        division = 1 / 0
 
-    try:
-        response = handler(request)
-    except Exception:
-        response = handle_500(request)
+
+    status = "200 OK"
 
     headers = {
-        "Content-Type": response.content_type,
+        "Content-type": "text/html",
     }
 
-    start_response(
-        f"{response.status.value} {response.status.phrase}",
-        list(headers.items()),
-    )
 
-    yield response.payload.encode()
+    random_number = random.randint(-100, 100)
+
+    environ2 = ""
+
+    for key, value in environ.items():
+        text = f"<tr><td>{key}</td><td>{value}</td></tr>"
+        environ2 = environ2 + text
+
+
+    template = read_template("index.html")
+
+    if environ["PATH_INFO"] == "/environ":
+        template = read_template("environ.html")
+
+    payload = template.format(
+        random_number=random_number,
+        environ=environ2,
+    )
+    if payload == "":
+        payload = read_template("index.html")
+
+    start_response(status, list(headers.items()))
+
+    yield payload.encode()
+
+
+def read_template(template_name: str) -> str:
+    dir_templates = DIR_SRC / "main" / "templates"
+    template = dir_templates / template_name
+
+    assert template.is_file()
+
+    with template.open("r") as fd:
+        content = fd.read()
+
+    return content
+
