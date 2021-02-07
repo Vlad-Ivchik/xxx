@@ -8,5 +8,4 @@ def main(lst, more_than):
             n += i
     return n
 
-
 print(main(lst=lst1, more_than=more))
