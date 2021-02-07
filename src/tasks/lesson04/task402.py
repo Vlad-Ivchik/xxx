@@ -1,17 +1,15 @@
-def main():
-    a = 0
-    while 1:
-        i = input("number: ")
-        if i == "stop":
-            break
+a = 0
 
-        if not i.isnumeric():
-            print("wrong input")
-            continue
-        else:
-            n = int(i)
-            a += n
-    return a
+while 1:
+    i = input("number: ")
+    if i == "stop":
+        break
 
-if __name__ == "__main__":
-    print(main())
+    if not i.isnumeric():
+        print("wrong input")
+        continue
+    else:
+        n = int(i)
+        a += n
+
+print(a)
