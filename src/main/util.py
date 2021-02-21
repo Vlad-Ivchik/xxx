@@ -1,20 +1,29 @@
 from pathlib import Path
+from string import Template
 from typing import Dict
 from typing import Optional
 from typing import Union
-from urllib.parse import parse_qs
 
 from framework.dirs import DIR_TEMPLATES
-from main.custom_types import RequestT
 
 
 def render_template(
     template_path: Union[str, Path],
     context: Optional[Dict] = None,
+    *,
+    engine: str = "{",
 ) -> str:
     template = read_template(template_path)
     context = context or {}
-    document = template.format(**context)
+
+    engines = {
+        "{": lambda _ctx: template.format(**_ctx),
+        "$": Template(template).safe_substitute,
+    }
+
+    renderer = engines[engine]
+    document = renderer(context)
+
     return document
 
 
@@ -23,20 +32,8 @@ def read_template(template_path: Union[str, Path]) -> str:
 
     assert template.is_file(), f"template {template_path!r} is not a file"
 
-    with template.open("r") as fd:
+    with template.open("r", 100, "utf-8") as fd:
         content = fd.read()
 
     return content
 
-
-def build_request(environ: Dict) -> RequestT:
-    qs = environ["QUERY_STRING"]
-    query = parse_qs(qs)
-
-    request = RequestT(
-        method=environ["REQUEST_METHOD"],
-        path=environ["PATH_INFO"],
-        query=query,
-    )
-
-    return request
