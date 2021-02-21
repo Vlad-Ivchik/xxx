@@ -1,28 +1,50 @@
-def list_processor(lst):
-  lst1 = lst.split(",")
-  lst2 = []
-  for i in lst1:
-    try:
-      lst2.append(int(i))
-    except ValueError:
-      continue
-  return lst2
+import json
+from http import HTTPStatus
+from typing import Dict
 
-def inputs():
-  lst = input("Список чисел ")
-  lst1 = list_processor(lst)
-  more = int(input("Сумма чисел, которые больше "))
-  return lst1, more
+from django.http import HttpRequest
+from django.http import HttpResponse
+from django.http import JsonResponse
 
-# lst1 = [1,12,3,4,45]
-# more = 10
+from main.util import render_template
 
-def main(lst, more_than):
-  n = 0
-  for i in lst:
-    if i > more_than:
-      n += i
-  return n
 
-if __name__ == "__main__":
-  print(main(*inputs()))
+def handler(request: HttpRequest) -> HttpResponse:
+    number = get_accumulated(request.session)
+    context = {"number": number}
+
+    document = render_template("tasks/lesson04/task402.html", context, engine="$")
+
+    response = HttpResponse(document)
+
+    return response
+
+
+def handler_api(request: HttpRequest) -> JsonResponse:
+    if request.method.lower() == "post":
+        payload = json.loads(request.body)
+        result = payload.get("number")
+        if result:
+            add_number(request.session, result)
+    else:
+        result = get_accumulated(request.session)
+
+    payload = {"ok": True, "result": result}
+
+    response = JsonResponse(payload)
+
+    return response
+
+
+def get_accumulated(session: Dict) -> int:
+    result = session.get("task402", 0)
+
+    return result
+
+
+def add_number(session: Dict, number: int) -> int:
+    acc = get_accumulated(session)
+    acc += number
+    session["task402"] = acc
+
+    return number
