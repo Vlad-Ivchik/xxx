@@ -21,4 +21,3 @@
 #     x2 = (-b - math.sqrt(D)) / (2 * a)
 #     print("x1 = " + str(x1))
 #     print("x2 = " + str(x2))
-
