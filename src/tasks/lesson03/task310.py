@@ -107,4 +107,4 @@ COINAGE = {
     5000: (solution1(decimal.Decimal("50")), BANKNOTE_SIGN),
     10000: (solution1(decimal.Decimal("100")), BANKNOTE_SIGN),
     20000: (solution1(decimal.Decimal("200")), BANKNOTE_SIGN),
-    50000: (solution1(decimal.Decimal("500")), BANKNOTE_SIGN),
+    50000: (solution1(decimal.Decimal("500")), BANKNOTE_SIGN),}
