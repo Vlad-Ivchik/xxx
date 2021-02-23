@@ -17,7 +17,7 @@ def handler(request: HttpRequest) -> HttpResponse:
 
     document = render_template(TEMPLATE, context)
 
-    response = HttpResponse(payload=document)
+    response = HttpResponse(document)
 
     return response
 
