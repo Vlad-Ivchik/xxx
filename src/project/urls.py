@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.http import HttpResponse, HttpRequest
 from django.urls import path
 
-
+from main.handlers.index import handler
 from tasks.lesson01 import task103
 from tasks.lesson03 import task301, task302, task303, task304, task305, task306, task307, task309, task310, task311
 
@@ -21,7 +21,7 @@ def xxxx(req):
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("", xxxx),
+    path("", handler),
     path("tasks/lesson01/task103.html", task103.handler),
     path("tasks/lesson03/task301.html", task301.handler),
     path("tasks/lesson03/task302.html", task302.handler),
