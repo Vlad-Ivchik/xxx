@@ -1,4 +1,4 @@
-import requests
+zimport requests
 
 from framework.util.settings import get_setting
 
