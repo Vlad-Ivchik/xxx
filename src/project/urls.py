@@ -30,11 +30,11 @@ urlpatterns = [
     path("tasks/lesson03/task303.html/", task303.handler),
     path("tasks/lesson03/task304.html/", task304.handler),
     path("tasks/lesson03/task305.html/", task305.handler),
-    path("tasks/lesson03/task306.html/", task306.handler), #???
-    path("tasks/lesson03/task307.html/", task307.handler), #???
+    path("tasks/lesson03/task306.html/", task306.handler),
+    path("tasks/lesson03/task307.html/", task307.handler),
     path("tasks/lesson03/task309.html/", task309.handler),
-    path("tasks/lesson03/task310.html/", task310.handler), #???
-    path("tasks/lesson03/task311.html/", task311.handler), #???
+    path("tasks/lesson03/task310.html/", task310.handler),
+    path("tasks/lesson03/task311.html/", task311.handler),
     path("tasks/lesson04/task402.html/", csrf_exempt(task402.handler))
 ]
 
