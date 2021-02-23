@@ -1,10 +1,12 @@
 from django.contrib import admin
 from django.http import HttpResponse, HttpRequest
 from django.urls import path
+from django.views.decorators.csrf import csrf_exempt
 
 from main.handlers.index import handler_django
 from tasks.lesson01 import task103
 from tasks.lesson03 import task301, task302, task303, task304, task305, task306, task307, task309, task310, task311
+from tasks.lesson04 import task402
 
 
 def xxxx(req):
@@ -33,5 +35,6 @@ urlpatterns = [
     path("tasks/lesson03/task309.html/", task309.handler),
     path("tasks/lesson03/task310.html/", task310.handler), #???
     path("tasks/lesson03/task311.html/", task311.handler), #???
+    path("tasks/lesson04/task402.html/", csrf_exempt(task402.handler))
 ]
 
