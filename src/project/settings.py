@@ -26,7 +26,7 @@ SECRET_KEY = 'cznki1^lqg8h8)ai^d##3+n%e=f*zee18rne!e=#!kl1u5!hdm'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    "tms-z43.herokuapp.com",
+    "ivchik-vlad.herokuapp.com",
     "localhost",
     "127.0.0.1",
 ]
