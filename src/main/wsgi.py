@@ -6,7 +6,7 @@ from main.handlers import handle_500
 from main.util import build_request
 
 sentry_sdk.init(get_setting("SENTRY_DSN"), traces_sample_rate=1.0)
-#112
+#test
 
 def application(environ, start_response):
     request = build_request(environ)
