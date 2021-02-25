@@ -35,7 +35,7 @@ urlpatterns = [
     path("tasks/lesson03/task309.html/", task309.handler),
     path("tasks/lesson03/task310.html/", task310.handler),
     path("tasks/lesson03/task311.html/", task311.handler),
-    path("api/v1/tasks/402/", task402.handler_api,
-    path("tasks/lesson04/task402.html/", csrf_exempt(task402.handler))
+    path("api/v1/tasks/402/", task402.handler_api),
+    path("tasks/lesson04/task402.html/", csrf_exempt(task402.handler)),
 ]
 

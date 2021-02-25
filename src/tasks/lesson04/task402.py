@@ -5,11 +5,12 @@ from typing import Dict
 from django.http import HttpRequest
 from django.http import HttpResponse
 from django.http import JsonResponse
-
+from django.views.decorators.csrf import csrf_exempt
 
 from main.util import render_template
 
 
+@csrf_exempt
 def handler(request: HttpRequest) -> HttpResponse:
     number = get_accumulated(request.session)
     context = {"number": number}
@@ -21,6 +22,7 @@ def handler(request: HttpRequest) -> HttpResponse:
     return response
 
 
+@csrf_exempt
 def handler_api(request: HttpRequest) -> JsonResponse:
     if request.method.lower() == "post":
         payload = json.loads(request.body)
