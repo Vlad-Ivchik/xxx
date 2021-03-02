@@ -14,6 +14,7 @@ jobs:
   build-and-test:
     environment:
       DATABASE_URL: "postgres://ci:ci@localhost:5432/ci?sslmode=disable"
+      DYNACONF_SECRET_KEY: "1"
       ENV_FOR_DYNACONF: ci
       PGPASSWORD: ci
       PIPENV_VENV_IN_PROJECT: 1
@@ -56,6 +57,7 @@ jobs:
           name: (Waiting for Postgres to be ready)
           command: |
             make wait-for-db
+
       - restore_cache:
           keys:
             - cc-selenium-{{ checksum "./.circleci/selenium.link" }}
@@ -74,6 +76,7 @@ jobs:
           name: Performing release steps
           command: |
             make initdb release
+
       - run:
           name: (Running Selenium)
           command: java -jar selenium.jar -log tests/functional/artifacts/selenium.log
