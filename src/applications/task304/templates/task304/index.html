@@ -1,0 +1,20 @@
+{% extends "_base.html" %}
+{% block title %}Задание 3.04{% endblock %}
+{% block heading %}Задание 3.04{% endblock %}
+{% block main %}
+    <section>
+        <h2>Условие</h2>
+        <p>Ввести предложение.</p>
+        <p>Если число символов в предложении кратно 3 - добавить ! к концу строки.</p>
+        <p>Вывести строку на экран.</p>
+        <form action="/tasks/304/" method="post">
+            <label for="id_sentence">Предложение:</label>
+            <input id="id_sentence" name="sentence" placeholder="что угодно" type="text" value="{{ sentence }}">
+            <button id="id_submit" type="submit">Выполнить</button>
+        </form>
+    </section>
+    <section>
+        <h2>Результат</h2>
+        <p><span id="id_result">{{ result }}</span></p>
+    </section>
+{% endblock %}
