@@ -11,7 +11,7 @@ SECRET_KEY = ds.SECRET_KEY
 DEBUG = ds.MODE_DEBUG
 
 ALLOWED_HOSTS = [
-    "tms-z43.herokuapp.com",
+    "ivchik-vlad.herokuapp.com",
     "localhost",
     "127.0.0.1",
 ]
